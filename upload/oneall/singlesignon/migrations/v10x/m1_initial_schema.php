@@ -57,7 +57,7 @@ class m1_initial_schema extends \phpbb\db\migration\migration
                             null
                         ),
                         'sso_session_token_expiration' => array(
-                            'UINT',
+                            'UINT:11',
                             null
                         ),
                         'num_logins' => array(

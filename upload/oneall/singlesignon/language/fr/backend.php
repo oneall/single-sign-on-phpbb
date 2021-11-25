@@ -42,13 +42,7 @@ $lang = array_merge($lang, array(
     // The G_ prefix is not a typo but required
     'G_OA_SINGLE_SIGN_ON_REGISTER' => 'Utilisateurs inscrits via OneAll',
 
-    'OA_SINGLE_SIGN_ON_CREATE_ACCOUNT_FIRST' => 'Pour utiliser Single Sign On vous avez besoin d’un compte gratuit sur <a href="https://app.oneall.com/signup/" class="external">http://www.oneall.com</a>.',
     'OA_SINGLE_SIGN_ON_DEFAULT' => 'Défaut',
-    'OA_SINGLE_SIGN_ON_DISCOVER_PLUGINS' => 'Découvrez <a href="http://docs.oneall.com/plugins/" class="external">nos autres plugins</a> pour Drupal, Joomla, WordPress…',
-    'OA_SINGLE_SIGN_ON_FOLLOW_US_TWITTER' => 'Suivez-nous sur <a href="http://www.twitter.com/oneall" class="external">Twitter</a> pour rester informé des nouveautés.',
-    'OA_SINGLE_SIGN_ON_GET_HELP' => '<a href="https://support.oneall.com/forums/" class="external">Contactez-nous</a> pour tout commentaire ou si vous avez besoin d’aide !',
-    'OA_SINGLE_SIGN_ON_READ_DOCS' => 'Consultez la <a href="http://docs.oneall.com/plugins/guide/social-login-phpbb/3.1/" class="external">documentation en ligne</a> pour en savoir d’avantage sur cette extension.',
-    'OA_SINGLE_SIGN_ON_INTRO' => 'Permet aux utilisateurs de se connecter et de s’enregistrer avec les réseaux sociaux tels que Twitter, Facebook, LinkedIn, VKontakte, Google et Yahoo et bien d’autres. Single Sign On <strong>permet d’augmenter le nombre de nouveaux utilisateurs</strong> en simplifiant l’enregistrement avec des informations <strong>récupérées depuis les profils des réseaux sociaux</strong>. L’extension s’intègre parfaitement au système d’enregistrement existant du forum ainsi les utilisateurs n’auront pas à recommencer leur enregistrement sur le forum.',
     'OA_SINGLE_SIGN_ON_VIEW_CREDENTIALS' => '<a href="https://app.oneall.com/applications/" class="button1 external">Créer et/ou consulter les données API</a>',
     'OA_SINGLE_SIGN_ON_WIDGET_TITLE' => 'Connexion avec un réseau social',
 

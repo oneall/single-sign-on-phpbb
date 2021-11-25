@@ -45,13 +45,7 @@ $lang = array_merge($lang, array(
     'OA_SINGLE_SIGN_ON_TITLE' => 'OneAll Single Sign On',
     'OA_SINGLE_SIGN_ON_TITLE_HELP' => 'Help, Updates &amp; Documentation',
 
-    'OA_SINGLE_SIGN_ON_CREATE_ACCOUNT_FIRST' => 'To be able to use Single Sign On, you first of all have to create a free account at <a href="https://app.oneall.com/signup/" class="external">http://www.oneall.com</a>.',
     'OA_SINGLE_SIGN_ON_DEFAULT' => 'Default',
-    'OA_SINGLE_SIGN_ON_DISCOVER_PLUGINS' => '<a href="http://docs.oneall.com/plugins/" class="external">Discover</a> our turnkey plugins for Drupal, Joomla, WordPress ...',
-    'OA_SINGLE_SIGN_ON_FOLLOW_US_TWITTER' => '<a href="http://www.twitter.com/oneall" class="external">Follow us</a> on Twitter to stay informed about updates;',
-    'OA_SINGLE_SIGN_ON_GET_HELP' => '<a href="https://support.oneall.com/forums/" class="external">Contact us</a> if you have feedback or need assistance!',
-    'OA_SINGLE_SIGN_ON_READ_DOCS' => '<a href="http://docs.oneall.com/plugins/guide/social-login-phpbb/3.1/" class="external">Read</a> the online documentation for more information about this plugin;',
-    'OA_SINGLE_SIGN_ON_INTRO' => 'Allow your visitors to login and register with social networks like Twitter, Facebook, LinkedIn, VKontakte, Google and Yahoo amongst others. Single Sign On <strong>increases your user registration rate</strong> by simplifying the registration process and provides permission-based social <strong>data retrieved from the social network profiles</strong>. Single Sign On integrates with your existing registration system so you and your users don’t have to start from scratch.',
     'OA_SINGLE_SIGN_ON_VIEW_CREDENTIALS' => '<a href="https://app.oneall.com/applications/" class="button1 external">Create and/or view my API Credentials</a>',
     'OA_SINGLE_SIGN_ON_WIDGET_TITLE' => 'Login with a social network',
 

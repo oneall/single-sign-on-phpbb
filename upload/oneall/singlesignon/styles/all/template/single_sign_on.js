@@ -6,15 +6,15 @@ jQuery(document).ready(function($){
         method :'GET',
         dataType: 'json', 
         success: function(result)
-        {console.log(OA_SINGLE_SIGN_ON_AJAX_GET_USER_NOTICE);
-                console.log(result.val);
+        {
+                
            	if (result.hasOwnProperty('val') && typeof result['val'] === 'string' && result['val'].length)
            	{
 
                 // Check for existing session.
                 if (result.val == 'check_session')
                 {
-                    console.log('check_session');
+                    
                     _oneall.push(['single_sign_on', 'do_check_for_sso_session', window.location.href, true]);                
                 } 
                 // Refresh current session.
@@ -22,7 +22,7 @@ jQuery(document).ready(function($){
                 {
                     if (result.val != 'no_token_found')
                     {
-                        console.log('!= no_token_found  != check_session');
+                        
                         _oneall.push(['single_sign_on', 'do_register_sso_session', result.val]);
                     }
                 }
