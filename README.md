@@ -1,101 +1,51 @@
 ## Available Versions
-* [Social Login for phpBB 3.0.x](https://github.com/oneall/social-login-phpbb/tree/phpbb/3.0.x)
-* **Social Login for phpBB 3.1 / 3.2 / 3.3**
+* **Single Sign-On for phpBB 3.3.5+**
+
+# Single Sign-On for phpBB 3.3.5+
+Single Sign-On (SSO) automatically creates accounts and signs users in as they browse between multiple and independent phpBB websites in your ecosystem. Take away the need for yours users to create new accounts or re-enter their authentication credentials when they switch from one of your websites to another. 
 
 
-# Social Login 4.8.0 for phpBB 3.1 / 3.2 / 3.3
+## Features
 
-Social Login for phpBB allows your users to login and register with 40+ social networks. 
-It increases your phpBB user registration rate by simplifying the registration process for 
-new users and provides permission-based social data retrieved from the social network profiles.
+ * Reduces user abandonment rates,
+ * Seamless transition for users from one website to another,
+ * Installed in just a few minutes,
+ * State-of-the-art security environment,
+ * 100% compliant with all US & EU data protection laws,
+ * Works across different and independant domains, websites and databases,
+ * Integrates with our turnkey plugins for WordPress, OpenCart and Magento too,
+ * Integrates with any website using our [SSO API](https://docs.oneall.com/services/implementation-guide/single-sign-on/),
+ * Top-notch support and integration help.
 
-## Contributors ##
 
-Galixte (http://www.galixte.com)
-* French translations
+### State-of-the-art security
+Single Sign-On is powered by the OneAll User Integration platform, a state-of-the-art security environment that is used by more than 
+300,000 websites worldwide - including small websites, growing startups and large corporate enterprises.
 
-Chris Vavruska (https://github.com/vavruska)
-* OneAll Authentication Provider
-	
-Raúl Arroyo (http://www.phpbb-es.com/)
-* Spanish translations
 
-Solidjeuh (http://www.muziekpromo.net)
-* Dutch translations
+### Data Protection Guarantee
+Single Sign-On is fully compliant with all European and U.S. data protection laws. As required by the General Data Protection 
+Regulation (GDPR) the OneAll Terms of Service include a Data Processing Agreement that we can countersign on request.
 
-ROZWADOWSKI Marek 
-* Bug fix
 
-EugyRdT (https://forumanicomio.eugy.it)
-* Italian translations
+### Seamless integration
+Single Sign-On seamlessly integrates with your existing login/registration system so that your users don't have to start from scratch.
+The extension is deployed in minutes and there is no hardware or software installation required.
 
-Many Thanks!
+The extension is fully compatible with our other SSO plugins like per example for [Magento](http://docs.oneall.com/plugins/guide/single-sign-on-magento/), 
+[OpenCart](https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=32346) or [WordPress](https://wordpress.org/plugins/single-sign-on-sso/)
+and can be implemented on any other platform using our [SSO API](https://docs.oneall.com/services/implementation-guide/single-sign-on/).
 
-## Installation guide
-https://docs.oneall.com/plugins/guide/social-login-phpbb/3.1/
 
-## Official phpBB Mod
-https://www.phpbb.com/customise/db/mod/oa_social_login/
- 
+### Installation Guide
+https://docs.oneall.com/plugins/guide/single-sign-on-phpbb/8/
 
-## Supported Social Networks
-* Amazon
-* Apple
-* BattleNet
-* Blogger
-* Draugiem
-* Dribbble
-* Discord
-* Disqus
-* Facebook
-* Foursquare
-* Github.com
-* Google
-* Instagram
-* Line
-* LinkedIn
-* LiveJournal
-* Mail.ru
-* Mixer
-* Meetup
-* Odnoklassniki
-* OpenID
-* Patreon
-* PayPal
-* Pinterest
-* PixelPin
-* Reddit
-* Skyrock.com		
-* SoundCloud
-* StackExchange
-* Steam
-* Tumblr
-* Twitch.tv
-* Twitter
-* Vimeo
-* VKontakte
-* Weibo
-* Windows Live
-* WordPress.com
-* Xing
-* Yahoo
-* YouTube
 
-## About Us
-Social Login is maintained by [OneAll](https://www.oneall.com/), a technology company offering Social Network integration 
-and User Storage as a service. Easily integrate 40+ social networks with our web-delivered tools and reunite your 
-existing user data in a state-of-the-art security environment that is 100% compliant with all US & EU data protection laws. 
+### About Us
+Single Sign-On is maintained by [OneAll](https://www.oneall.com), a technology company offering
+user storage as as service and web-delivered tools to simplify the integration of social networks into websites and mobile apps.
 
-**Social Network Integration**  
-https://www.oneall.com/services/social-network-integration/
 
-**User Engagement Solutions**  
-https://www.oneall.com/services/user-engagement-solutions/
-
-**Customer Identity Access And Management**  
-https://www.oneall.com/services/customer-identity-management/
-
-## License
-The **GNU General Public License** (GPL) is available at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html.
-
-**Fork us on Github!**
+### License
+The **GNU General Public License** (GPL) is available at  
+http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
