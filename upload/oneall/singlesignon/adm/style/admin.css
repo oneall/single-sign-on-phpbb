@@ -1,0 +1,87 @@
+#oneall_singlesignon  a,
+#oneall_singlesignon  a.button1:hover {
+	color: #BC2A4D;
+	text-decoration: underline;
+}
+
+#oneall_singlesignon  a:hover,
+#oneall_singlesignon  a.button1 {
+	color: #105289;
+	text-decoration: none;
+}
+
+#oneall_singlesignon .section {
+	margin: 5px 0 20px 0;
+}
+
+#oneall_singlesignon .section.welcome {
+	border: 1px solid #ccc;
+	padding: 20px;
+	background-color: #FFFFE0
+}
+
+#oneall_singlesignon .section.get_started {
+	background-color: #DDDDDD;
+	border: 1px dashed #AAAAAA;
+	margin-bottom: 30px;
+	overflow: hidden;
+	padding: 10px;
+}
+
+#oneall_singlesignon .section.get_started h4 {
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+#oneall_singlesignon .section.welcome h3 {
+	margin: 5px 0 10px;
+}
+
+#oneall_singlesignon .working_message {
+	color: blue;
+	background: url("img/status_loading.gif") no-repeat scroll 0 50% transparent;
+	padding-left: 25px;
+	margin-left: 10px;
+	font-weight: bold;
+}
+
+#oneall_singlesignon .error_message {
+	color: red;
+	background: url("img/status_error.png") no-repeat scroll 0 50% transparent;
+	padding-left: 25px;
+	margin-left: 10px;
+	font-weight: bold;
+}
+
+#oneall_singlesignon .error_message a {
+	color: red;
+	font-weight: bold;
+}
+
+#oneall_singlesignon .error_message a:hover {
+	color: #C70000;
+}
+
+#oneall_singlesignon .success_message {
+	color: green;
+	background: url("img/status_ok.png") no-repeat scroll 0 50% transparent;
+	padding-left: 25px;
+	margin-left: 10px;
+	font-weight: bold;
+}
+
+#oneall_singlesignon fieldset dl.dot {
+	border-bottom: 2px dotted #ccc !important;
+	padding: 5px 0 15px;
+}
+
+#oneall_singlesignon fieldset dl:last-child {
+	border: 0 none;
+	margin-bottom: 0;
+	padding-bottom: 5px;
+}
+
+#oneall_singlesignon fieldset dl dt,
+#oneall_singlesignon fieldset dl dd {
+	border: 0 none;
+}

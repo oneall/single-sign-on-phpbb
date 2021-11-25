@@ -1,0 +1,32 @@
+
+
+<!-- IF OA_SINGLE_SIGN_ON_EMBED_SINGLE_SIGN_ON --> 
+
+	<script type="text/javascript">
+
+		// <![CDATA[	
+		var have_oa_lib = ((typeof window.oneall !== 'undefined') ? true : false);
+		(function(){if (!have_oa_lib){
+		var lib = document.createElement('script');
+		lib.type = 'text/javascript'; lib.async = true;
+		lib.src = '//{OA_SINGLE_SIGN_ON_API_SUBDOMAIN}.api.oneall.com/socialize/library.js';
+		var node = document.getElementsByTagName('script')[0];
+		node.parentNode.insertBefore(lib, node); have_oa_lib = true;
+		}})();
+		var _oneall = (_oneall || []);
+
+		// ]]>
+
+	</script>
+<!-- ENDIF -->
+
+
+<script type="text/javascript">
+	// <![CDATA[
+	    var OA_SINGLE_SIGN_ON_AJAX_GET_SSO_TOKEN = '{OA_SINGLE_SIGN_ON_AJAX_GET_SSO_TOKEN}';
+	    var OA_SINGLE_SIGN_ON_AJAX_GET_USER_NOTICE = '{OA_SINGLE_SIGN_ON_AJAX_GET_USER_NOTICE}';
+	//]]>
+</script>
+
+
+<!-- INCLUDEJS @oneall_singlesignon/single_sign_on.js -->

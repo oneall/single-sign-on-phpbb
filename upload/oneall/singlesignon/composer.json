@@ -1,0 +1,32 @@
+{
+	"name": "oneall/singlesignon",
+	"type": "phpbb-extension",
+	"description": "Single Sign On for phpBB allows your users to login and register with 35+ Social Networks like for example Twitter, Facebook, LinkedIn and Google+",
+	"homepage": "https://docs.oneall.com/plugins/guide/social-login-phpbb/",
+	"version": "1.0.0",
+	"keywords": ["phpBB", "Extension", "OneAll", "Single Sign On"],
+	"license": "GPL-2.0-only",
+	"authors": [
+		{
+			"name": "OneAll",
+			"email": "support@oneall.com",
+			"homepage": "http://www.oneall.com/",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "http://www.oneall.com/company/contact-us/"
+	},
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"provide": {
+		 "phpbb/phpbb": "3.1.0-RC3"
+	}	,
+	"extra": {
+		"display-name": "Single Sign On",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.1.0-RC2"
+		}
+	}
+}

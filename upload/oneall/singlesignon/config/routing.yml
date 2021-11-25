@@ -1,0 +1,11 @@
+
+oneall_singlesignon_validate:
+    path: /oneall_singlesignon_validate
+    defaults: { _controller: oneall.singlesignon.listener:handle }
+oneall_singlesignon_get_sso_token:
+    path: /oneall_singlesignon_controller
+    defaults: { _controller: oneall.singlesignon.singlesignon:get_user_sso_token }
+oneall_singlesignon_get_user_notice:
+    path: /oneall_singlesignon_controller/get_user_notice
+    defaults: { _controller: oneall.singlesignon.singlesignon:get_user_notice }
+

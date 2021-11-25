@@ -1,0 +1,227 @@
+
+<!-- INCLUDEJS @oneall_singlesignon/admin.js -->
+<!-- INCLUDECSS @oneall_singlesignon/admin.css -->
+
+<!-- INCLUDE overall_header.html -->
+
+<script type="text/javascript">
+// <![CDATA[
+    var OA_SINGLE_SIGN_ON_AJAX_URL_AUTODETECT = '{OA_SINGLE_SIGN_ON_AJAX_URL_AUTODETECT}';
+    var OA_SINGLE_SIGN_ON_AJAX_URL_VERIFY = '{OA_SINGLE_SIGN_ON_AJAX_URL_VERIFY}';
+//]]>
+</script>
+
+<div id="oneall_singlesignon">
+	<!-- IF OA_SINGLE_SIGN_ON_SETTINGS_SAVED -->
+		<div class="successbox">
+			<h3>Information</h3>
+			<p>{L_OA_SINGLE_SIGN_ON_SETTINGS_UPDATED}</p>
+		</div>
+	<!-- ENDIF -->	
+	<!-- IF S_WARNING -->
+		<div class="errorbox">
+	   	<h3>{L_WARNING}</h3>
+	   	<p>{WARNING_MSG}</p>
+		</div>
+	<!-- ENDIF -->
+	<h1>{L_OA_SINGLE_SIGN_ON_TITLE}</h1>
+	<div class="section">
+		<p>
+			{L_OA_SINGLE_SIGN_ON_INTRO}
+		</p>
+	</div>					
+	<div class="section welcome">
+		<h3>{L_OA_SINGLE_SIGN_ON_TITLE_HELP}</h3>
+		<ul>
+			<li>{L_OA_SINGLE_SIGN_ON_FOLLOW_US_TWITTER}</li>
+			<li>{L_OA_SINGLE_SIGN_ON_READ_DOCS}</li>
+			<li>{L_OA_SINGLE_SIGN_ON_DISCOVER_PLUGINS}</li>
+			<li>{L_OA_SINGLE_SIGN_ON_GET_HELP}</li>			
+		</ul>
+	</div>
+	<div class="section get_started">
+		<h4>{L_OA_SINGLE_SIGN_ON_CREATE_ACCOUNT_FIRST}</h4>
+		<p>
+			{L_OA_SINGLE_SIGN_ON_SETUP_FREE_ACCOUNT} | {L_OA_SINGLE_SIGN_ON_VIEW_CREDENTIALS}
+		</p>
+	</div>		
+	<form id="oneall_sso_form" method="post" action="{U_ACTION}">	
+		<fieldset>
+			<legend>{L_OA_SINGLE_SIGN_ON_DO_ENABLE}</legend>			
+			<dl>
+				<dt>
+					<label for="oa_sso_disable_0">{L_OA_SINGLE_SIGN_ON_DO_ENABLE}</label>
+					<br /><span>{L_OA_SINGLE_SIGN_ON_DO_ENABLE_DESC}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" id="oa_sso_disable_0" name="oa_sso_disable" value="0"<!-- IF not OA_SINGLE_SIGN_ON_DISABLE --> checked="checked"<!-- ENDIF --> /> {L_OA_SINGLE_SIGN_ON_DO_ENABLE_YES} <strong>({L_OA_SINGLE_SIGN_ON_DEFAULT})</strong></label><br />
+					<label><input type="radio" class="radio" id="oa_sso_disable_1" name="oa_sso_disable" value="1"<!-- IF OA_SINGLE_SIGN_ON_DISABLE --> checked="checked"<!-- ENDIF --> /> {L_OA_SINGLE_SIGN_ON_DO_ENABLE_NO}</label>
+				</dd>
+			</dl>
+		</fieldset>		
+		<fieldset>
+			<legend>{L_OA_SINGLE_SIGN_ON_API_CONNECTION}</legend>
+			<dl>
+				<dt>
+					<label for="oa_sso_api_connection_handler_curl">{L_OA_SINGLE_SIGN_ON_API_CONNECTION_HANDLER}{L_COLON}</label>
+					<br /><span>{L_OA_SINGLE_SIGN_ON_API_CONNECTION_HANDLER_DESC}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" id="oa_sso_api_connection_handler_curl" name="oa_sso_api_connection_handler" value="cr"<!-- IF OA_SINGLE_SIGN_ON_API_CONNECTION_HANDLER_CURL --> checked="checked"<!-- ENDIF --> /> {L_OA_SINGLE_SIGN_ON_CURL}</label><br />
+					<span>{L_OA_SINGLE_SIGN_ON_CURL_DESC}</span> ({L_OA_SINGLE_SIGN_ON_CURL_DOCS})<br /><br />					
+					<label><input type="radio" class="radio" id="oa_sso_api_connection_handler_fsockopen" name="oa_sso_api_connection_handler" value="fs"<!-- IF OA_SINGLE_SIGN_ON_API_CONNECTION_HANDLER_FSOCKOPEN --> checked="checked"<!-- ENDIF --> /> {L_OA_SINGLE_SIGN_ON_FSOCKOPEN}</label><br />
+					<span>{L_OA_SINGLE_SIGN_ON_FSOCKOPEN_DESC}</span> ({L_OA_SINGLE_SIGN_ON_FSOCKOPEN_DOCS})
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="oa_sso_api_connection_port_443">{L_OA_SINGLE_SIGN_ON_API_PORT}{L_COLON}</label>
+					<br /><span>{L_OA_SINGLE_SIGN_ON_API_PORT_DESC}</span>
+				</dt>
+				<dd>
+					<label><input type="radio" class="radio" id="oa_sso_api_connection_port_443" name="oa_sso_api_connection_port" value="443"<!-- IF OA_SINGLE_SIGN_ON_API_CONNECTION_PORT_443 --> checked="checked"<!-- ENDIF --> /> {L_OA_SINGLE_SIGN_ON_PORT_443}</label><br />
+					<span>{L_OA_SINGLE_SIGN_ON_PORT_443_DESC}</span><br /><br />				
+					<label><input type="radio" class="radio" id="oa_sso_api_connection_port_80" name="oa_sso_api_connection_port" value="80"<!-- IF OA_SINGLE_SIGN_ON_API_CONNECTION_PORT_80--> checked="checked"<!-- ENDIF --> /> {L_OA_SINGLE_SIGN_ON_PORT_80}</label><br />
+					<span>{L_OA_SINGLE_SIGN_ON_PORT_80_DESC}</span>				
+				</dd>
+			</dl>			
+			<dl>
+				<dt>
+					<span id="oa_sso_api_connection_handler_result"></span>
+				</dt>
+				<dd> 			
+					<input class="button2" type="button" id="oa_sso_autodetect_api_connection_handler" value="{L_OA_SINGLE_SIGN_ON_API_AUTODETECT}" />               
+				</dd>
+			</dl>
+		</fieldset>			
+		<fieldset>
+			<legend>{L_OA_SINGLE_SIGN_ON_API_CREDENTIALS_TITLE}</legend>		
+				<dl>
+					<dt>
+						<label for="oa_sso_api_subdomain">{L_OA_SINGLE_SIGN_ON_API_SUBDOMAIN}{L_COLON}</label>
+					</dt>
+					<dd>
+						<input type="text" id="oa_sso_api_subdomain" name="oa_sso_api_subdomain" value="{OA_SINGLE_SIGN_ON_API_SUBDOMAIN}"  size="60" />
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="oa_sso_api_key">{L_OA_SINGLE_SIGN_ON_API_PUBLIC_KEY}{L_COLON}</label>
+					</dt>
+					<dd>
+						<input type="text" id="oa_sso_api_key" name="oa_sso_api_key" value="{OA_SINGLE_SIGN_ON_API_KEY}"  size="60" />
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="oa_sso_api_secret">{L_OA_SINGLE_SIGN_ON_API_PRIVATE_KEY}{L_COLON}</label>
+					</dt>
+					<dd>
+						<input type="text" id="oa_sso_api_secret" name="oa_sso_api_secret" value="{OA_SINGLE_SIGN_ON_API_SECRET}"  size="60" />
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<span id="oa_sso_api_test_result"></span>
+					</dt>
+					<dd> 			
+						<input class="button2" type="button" id="oa_sso_test_api_settings" value="{L_OA_SINGLE_SIGN_ON_API_VERIFY}" />               
+					</dd>
+				</dl>
+		</fieldset>		
+
+		<fieldset>
+			<legend>{L_OA_SINGLE_SIGN_ON_SETTINGS}</legend>			
+			<dl>
+				<dt>
+					<label for="oa_sso_auto_create_accounts">{L_OA_SINGLE_SIGN_ON_AUTOCREATION}{L_COLON}</label>
+					<br /><span>{L_OA_SINGLE_SIGN_ON_AUTOCREATION_DESC}</span>
+				</dt>
+				<dd>
+					<select name="oa_sso_auto_create_accounts">
+						<option value="1"<!-- IF OA_SINGLE_SIGN_ON_AUTOCREATE_ACCOUNT == 1 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_AUTOCREATION_YES}</option>
+						<option value="0"<!-- IF OA_SINGLE_SIGN_ON_AUTOCREATE_ACCOUNT == 0 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_AUTOCREATION_NO}</option>
+					</select>
+				</dd>
+			</dl>			
+			<dl>
+				<dt>
+					<label for="oa_sso_auto_link_accounts">{L_OA_SINGLE_SIGN_ON_AUTOLINK_ACCOUNT}{L_COLON}</label>
+					<br /><span>{L_OA_SINGLE_SIGN_ON_AUTOLINK_ACCOUNT_DESC}</span>
+				</dt>
+				<dd>
+					<select name="oa_sso_auto_link_accounts">
+						<option value="2"<!-- IF OA_SINGLE_SIGN_ON_AUTOLINK_ACCOUNT == 2 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_AUTOLINK_ACCOUNT_YES_WITHOUT_ADMIN}</option>
+						<option value="0"<!-- IF OA_SINGLE_SIGN_ON_AUTOLINK_ACCOUNT == 0 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_AUTOLINK_ACCOUNT_NO}</option>
+						<option value="1"<!-- IF OA_SINGLE_SIGN_ON_AUTOLINK_ACCOUNT == 1 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_AUTOLINK_ACCOUNT_YES}</option>
+					</select>					
+				</dd>			
+			</dl>		
+			<dl>
+				<dt>
+					<label for="oa_sso_link_unverified_accounts">{L_OA_SINGLE_SIGN_ON_AUTOLINK_UNVERIFIED_EMAIL}{L_COLON}</label>
+					<br /><span>{L_OA_SINGLE_SIGN_ON_AUTOLINK_UNVERIFIED_EMAIL_DESC}</span>
+				</dt>
+				<dd>
+					<select name="oa_sso_link_unverified_accounts">
+						<option value="0"<!-- IF OA_SINGLE_SIGN_ON_AUTOLINK_UNVERIFIED_EMAIL == 0 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_AUTOLINK_UNVERIFIED_EMAIL_NO}</option>
+						<option value="1"<!-- IF OA_SINGLE_SIGN_ON_AUTOLINK_UNVERIFIED_EMAIL == 1 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_AUTOLINK_UNVERIFIED_EMAIL_YES}</option>
+					</select>					
+				</dd>			
+			</dl>	
+			<dl>
+				<dt>
+					<label for="oa_sso_use_account_reminder">{L_OA_SINGLE_SIGN_ON_REMINDER}{L_COLON}</label>
+					<br /><span>{L_OA_SINGLE_SIGN_ON_REMINDER_DESC}</span>
+				</dt>
+				<dd>
+					<select name="oa_sso_use_account_reminder">
+						<option value="1"<!-- IF OA_SINGLE_SIGN_ON_USE_ACCOUNT_REMINDER == 1 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_REMINDER_YES}</option>
+						<option value="0"<!-- IF OA_SINGLE_SIGN_ON_USE_ACCOUNT_REMINDER == 0 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_REMINDER_NO}</option>
+					</select>					
+				</dd>			
+			</dl>		
+			<dl>
+				<dt>
+					<label for="oa_sso_destroy_session_on_logout">{L_OA_SINGLE_SIGN_ON_DESTROY_SESSION}{L_COLON}</label>
+					<br /><span>{L_OA_SINGLE_SIGN_ON_DESTROY_SESSION_DESC}</span>
+				</dt>
+				<dd>
+					<select name="oa_sso_destroy_session_on_logout">
+						<option value="1"<!-- IF OA_SINGLE_SIGN_ON_DESTROY_SSO_SESSION == 1 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_DESTROY_SESSION_YES}</option>
+						<option value="0"<!-- IF OA_SINGLE_SIGN_ON_DESTROY_SSO_SESSION == 0 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_DESTROY_SESSION_NO}</option>
+					</select>					
+				</dd>			
+			</dl>					
+			<dl>
+				<dt>
+					<label for="oa_sso_logout_wait_relogin">{L_OA_SINGLE_SIGN_ON_WAIT_RELOGIN}{L_COLON}</label>
+					<br /><span>{L_OA_SINGLE_SIGN_ON_WAIT_RELOGIN_DESC}</span>
+				</dt>
+				<dd>
+					<input type="text" id="oa_sso_logout_wait_relogin" name="oa_sso_logout_wait_relogin" value="{OA_SINGLE_SIGN_ON_LOGOUT_WAIT_RELOGIN}" size="60" />
+				</dd>
+			</dl>
+		</fieldset>	
+		<fieldset>
+			<legend>{L_OA_SINGLE_SIGN_ON_LOG_SETTINGS}</legend>			
+			<dl>
+				<dt>
+					<label for="oa_sso_enable_debug_logs">{L_OA_SINGLE_SIGN_ON_LOG}{L_COLON}</label>
+					<br /><span>{L_OA_SINGLE_SIGN_ON_LOG_DESC}</span>
+				</dt>
+				<dd>
+					<select name="oa_sso_enable_debug_logs">
+						<option value="1"<!-- IF OA_SINGLE_SIGN_ON_ENABLE_LOGS == 1 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_LOG_YES}</option>
+						<option value="0"<!-- IF OA_SINGLE_SIGN_ON_ENABLE_LOGS == 0 --> selected="selected"<!-- ENDIF -->>{L_OA_SINGLE_SIGN_ON_LOG_NO}</option>
+					</select>					
+				</dd>			
+			</dl>	
+		</fieldset>		
+		<fieldset class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />
+			{S_FORM_TOKEN}
+		</fieldset>
+	</form>
+</div>
+<!-- INCLUDE overall_footer.html -->

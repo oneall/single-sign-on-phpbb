@@ -1,0 +1,76 @@
+services:
+    oneall.singlesignon.singlesignon:
+        class: oneall\singlesignon\core\singlesignon
+        arguments:
+            - '@config'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@auth'
+            - '@dbal.conn'
+            - '@dispatcher'
+            - '@passwords.manager'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%core.table_prefix%'
+            - '@oneall.singlesignon.helper'
+            - '@oneall.singlesignon.noticemanager'
+        tags:
+            - { name: core.singlesignon }
+
+    oneall.singlesignon.helper:
+        class: oneall\singlesignon\core\helper
+        arguments:
+            - '@config'
+            - '@request'
+            - '@template'
+            - '@log'
+            - '@user'
+            - '@auth'
+            - '@dbal.conn'
+            - '@dispatcher'
+            - '@passwords.manager'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%core.table_prefix%'
+        tags:
+            - { name: core.helper }
+        
+    oneall.singlesignon.listener:
+        class: oneall\singlesignon\event\listener
+        arguments:           
+            - '@config'
+            - '@config_text'
+            - '@controller.helper'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '@oneall.singlesignon.helper'
+            - '@oneall.singlesignon.singlesignon'
+            - '@oneall.singlesignon.noticemanager'
+        tags:
+            - { name: event.listener }
+
+    oneall.singlesignon.noticemanager:
+        class: oneall\singlesignon\core\noticemanager
+        arguments:
+            - '@config'
+            - '@request'
+            - '@template'
+            - '@log'
+            - '@user'
+            - '@auth'
+            - '@dbal.conn'
+            - '@dispatcher'
+            - '@passwords.manager'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%core.table_prefix%'
+            - '@oneall.singlesignon.helper'
+        tags:
+            - { name: core.noticemanager }
+
+imports:
+    - { resource: auth.yml }    
