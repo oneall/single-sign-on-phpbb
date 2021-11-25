@@ -39,12 +39,6 @@ if (empty($lang) || !is_array($lang))
 
 // Single Sign On Frontend.
 $lang = array_merge($lang, array(
-    'OA_SINGLE_SIGN_ON_LINK_UCP' => 'Réseaux sociaux liés',
-    'OA_SINGLE_SIGN_ON_LINK' => 'Lier son compte avec les réseaux sociaux',
-    'OA_SINGLE_SIGN_ON_LINK_NETWORKS' => 'Réseaux sociaux ',
-    'OA_SINGLE_SIGN_ON_LINK_DESC1' => 'Sur cette page il est possible de lier ses comptes des réseaux sociaux avec son compte existant sur le forum.',
-    'OA_SINGLE_SIGN_ON_LINK_DESC2' => 'Après avoir lié un compte de réseau social il est possible d’utiliser ce compte pour se connecter au forum.',
-    'OA_SINGLE_SIGN_ON_LINK_ACTION' => 'Cliquer sur l’icône du réseau social à lier / délier.',
     'OA_SINGLE_SIGN_ON_ENABLE_SOCIAL_NETWORK' => 'Au moins un compte de réseau social doit être lié.',
     'OA_SINGLE_SIGN_ON_ENTER_CREDENTIALS' => 'Configurer ses certificats d’API.',
     'OA_SINGLE_SIGN_ON_ACCOUNT_ALREADY_LINKED' => 'Ce compte de réseau social est déjà lié avec un compte utilisateur du forum.',

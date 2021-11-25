@@ -57,16 +57,6 @@ class m2_initial_module extends \phpbb\db\migration\migration
                         )
                     )
                 )
-            ),
-
-            // Add Social Link group to UCP \ Profile
-            array(
-                'module.add',
-                array(
-                    'ucp',
-                    '',
-                    'OA_SINGLE_SIGN_ON_LINK_UCP'
-                )
             )
         );
     }

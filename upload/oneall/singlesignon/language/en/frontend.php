@@ -39,12 +39,6 @@ if (empty($lang) || !is_array($lang))
 
 // Single Sign On Frontend.
 $lang = array_merge($lang, array(
-    'OA_SINGLE_SIGN_ON_LINK_UCP' => 'Link social network accounts',
-    'OA_SINGLE_SIGN_ON_LINK' => 'Link social network accounts',
-    'OA_SINGLE_SIGN_ON_LINK_NETWORKS' => 'Social Networks',
-    'OA_SINGLE_SIGN_ON_LINK_DESC1' => 'On this page you can connect your social network accounts to your forum account.',
-    'OA_SINGLE_SIGN_ON_LINK_DESC2' => 'After having connected a social network account you can also use it to login to the forum.',
-    'OA_SINGLE_SIGN_ON_LINK_ACTION' => 'Click on the icon of social network to link/unlink.',
     'OA_SINGLE_SIGN_ON_ENABLE_SOCIAL_NETWORK' => 'You have to enable at least one social network',
     'OA_SINGLE_SIGN_ON_ENTER_CREDENTIALS' => 'You have to setup your API credentials',
     'OA_SINGLE_SIGN_ON_ACCOUNT_ALREADY_LINKED' => 'This social network account is already linked to another forum user.',
