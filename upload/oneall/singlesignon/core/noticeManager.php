@@ -24,20 +24,11 @@
  */
 namespace oneall\singlesignon\core;
 
-// Constants.
-define('SINGLE_SIGN_ON_LOGIN_WAIT_COOKIE_KEY', 'oa_sso_lw');
-define('SINGLE_SIGN_ON_LOGOUT_WAIT_RELOGIN_DEFAULT', 60 * 60);
-define('SINGLE_SIGN_ON_COOKIE_DOMAIN', false);
-define('SINGLE_SIGN_ON_COOKIEPATH', '/');
-
 /**
  * notices
  */
 class noticeManager
 {
-    // Version
-    const USER_AGENT = 'SingleSignOn/1.0.0 phpBB/3.1.x (+http://www.oneall.com/)';
-
     // @var \phpbb\config\config
     protected $config;
 
@@ -95,48 +86,26 @@ class noticeManager
     }
 
     /**
-     * Get notices
-     */
-    public function get_notices()
-    {
-        // oasl_settings
-        $query = Database::getConnection()->select('oasl_settings', 'oasl_s');
-        $query->fields('oasl_s')->condition('setting', 'notice', '=');
-        $oasl_settings = $query->execute()->fetch();
-
-        return !empty($oasl_settings->value) ? json_decode($oasl_settings->value, true) : [];
-    }
-
-    /**
      * Displays a notice if the user is recognized.
      */
     public function display_user_notice()
     {
-        // @todo
-        return true;
-
         $notice = '';
 
         // Make sure it's enabled.
-        if (!empty($this->config['account_reminder']))
+        if (!empty($this->config['oa_sso_use_account_reminder']))
         {
             // Read user from notice.
             $user = $this->get_user_notice(true);
 
-            var_dump($user);
-            die;
-
             // Verify user object.
-            if (is_object($user) && !empty($user->id()))
+            if (is_object($user) && !empty($user->user_id))
             {
                 // Mark user notice as displayed.
-                single_sign_on_mark_user_notice_displayed($user);
-
-                // Are we using HTTPs?
-                $is_https = \Drupal::request()->isSecure();
+                $this->mark_user_notice_displayed($user);
 
                 // Login url.
-                $login_url = single_sign_on_get_current_url($is_https, false) . '/user/login';
+                $login_url = $this->helper->get_current_url([], [], true, false) . '/ucp.php';
 
                 $notice = '<div id="oa_single_sign_on_overlay"></div>
                     <div id="oa_single_sign_on_modal">
@@ -147,7 +116,7 @@ class noticeManager
                                 </div>
                                 <div class="oa_single_sign_on_modal_body">
                                     <div class="oa_single_sign_on_modal_notice">
-                                        You already seem to have registered an account with the username <span class="oa_single_sign_on_login">' . $user->getUsername() . '</span>. Would you like to login now?
+                                        You already seem to have registered an account with the username <span class="oa_single_sign_on_login">' . $user->username . '</span>. Would you like to login now?
                                     </div>
                                     <div class="oa_single_sign_on_modal_buttons">
                                         <a href="' . $login_url . '" class="oa_single_sign_on_modal_button" id="oa_single_sign_on_modal_button_login">Login</a>
@@ -169,7 +138,7 @@ class noticeManager
     public function enable_user_notice($user, $period = 3600)
     {
         // Verify user object.
-        if (is_object($user) && !empty($user->id()))
+        if (is_object($user) && !empty($user->user_id))
         {
             // Read notices
             $old_notices = $this->get_notices();
@@ -182,59 +151,28 @@ class noticeManager
             $new_notices = array();
             foreach ($old_notices as $notice)
             {
-                if (isset($notice['userid']) && $notice['userid'] != $user->id())
+                if (isset($notice['userid']) && $notice['userid'] != $user->user_id)
                 {
                     $new_notices[] = $notice;
                 }
             }
 
             // Generate a hash.
-            $hash = single_sign_on_hash_string($user->id() . time());
+            $hash = $this->hash_string($user->user_id . time());
 
             // Add notice.
             $notices[] = array(
                 'hash' => $hash,
-                'userid' => $user->id(),
+                'userid' => $user->user_id,
                 'displayed' => 0,
                 'expires' => (time() + $period)
             );
 
             // Save notices.
-            single_sign_on_insert_notice($notices);
+            $this->insert_notice($notices);
 
             // Add cookie.
-            setcookie('oa_sso_notice', $hash, (time() + $period), SINGLE_SIGN_ON_COOKIEPATH, SINGLE_SIGN_ON_COOKIE_DOMAIN);
-            $_COOKIE['oa_sso_notice'] = $hash;
-        }
-    }
-
-    /**
-     * Remove a user a notice.
-     */
-    public function remove_user_notice($user)
-    {
-        // Verify user object.
-        if (is_object($user) && !empty($user->id()))
-        {
-            // Current notices.
-            $old_notices = $this->get_notices();
-            if (!is_array($old_notices))
-            {
-                $old_notices = array();
-            }
-
-            // New notices.
-            $new_notices = array();
-            foreach ($old_notices as $notice)
-            {
-                if (isset($notice['userid']) && $notice['userid'] != $user->id())
-                {
-                    $new_notices[] = $notice;
-                }
-            }
-
-            // Save notices.
-            single_sign_on_insert_notice($new_notices);
+            $this->user->set_cookie('oa_sso_notice', $hash, (time() + $period));
         }
     }
 
@@ -243,13 +181,7 @@ class noticeManager
      */
     public function remove_user_notice_cookies()
     {
-        if (isset($_COOKIE) && is_array($_COOKIE) && isset($_COOKIE['oa_sso_notice']))
-        {
-            unset($_COOKIE['oa_sso_notice']);
-        }
-
-        // Remove Cookie.
-        setcookie('oa_sso_notice', '', (time() - (15 * 60)), SINGLE_SIGN_ON_COOKIEPATH, SINGLE_SIGN_ON_COOKIE_DOMAIN);
+        $this->user->set_cookie('oa_sso_notice', '', (time() - (15 * 60)));
     }
 
     /**
@@ -257,8 +189,8 @@ class noticeManager
      */
     public function remove_flush_user_notice($user)
     {
-        single_sign_on_remove_user_notice_cookies();
-        single_sign_on_remove_user_notice($user);
+        $this->remove_user_notice_cookies();
+        $this->remove_user_notice($user);
     }
 
     /**
@@ -267,7 +199,7 @@ class noticeManager
     public function mark_user_notice_displayed($user)
     {
         // Verify user object.
-        if (is_object($user) && !empty($user->id()))
+        if (is_object($user) && !empty($user->user_id))
         {
             // Current notices.
             $old_notices = $this->get_notices();
@@ -280,7 +212,7 @@ class noticeManager
             $new_notices = array();
             foreach ($old_notices as $notice)
             {
-                if (isset($notice['userid']) && $notice['userid'] == $user->id())
+                if (isset($notice['userid']) && $notice['userid'] == $user->user_id)
                 {
                     $notice['displayed'] = 1;
                 }
@@ -290,7 +222,37 @@ class noticeManager
             }
 
             // Save notices
-            single_sign_on_insert_notice($new_notices);
+            $this->insert_notice($new_notices);
+        }
+    }
+
+    /**
+     * Remove a user a notice.
+     */
+    public function remove_user_notice($user)
+    {
+        // Verify user object.
+        if (is_object($user) && !empty($user->user_id))
+        {
+            // Current notices.
+            $old_notices = $this->get_notices();
+            if (!is_array($old_notices))
+            {
+                $old_notices = array();
+            }
+
+            // New notices.
+            $new_notices = array();
+            foreach ($old_notices as $notice)
+            {
+                if (isset($notice['userid']) && $notice['userid'] != $user->user_id)
+                {
+                    $new_notices[] = $notice;
+                }
+            }
+
+            // Save notices.
+            $this->insert_notice($new_notices);
         }
     }
 
@@ -299,7 +261,7 @@ class noticeManager
      */
     public function get_user_notice($only_non_displayed)
     {
-        if (isset($_COOKIE) && is_array($_COOKIE) && isset($_COOKIE['oa_sso_notice']))
+        if (!empty($this->helper->get_cookie_value('oa_sso_notice')))
         {
             // Read notices
             $notices = $this->get_notices();
@@ -308,7 +270,7 @@ class noticeManager
             if (is_array($notices))
             {
                 // Read hash
-                $hash = $_COOKIE['oa_sso_notice'];
+                $hash = $this->helper->get_cookie_value('oa_sso_notice');
 
                 // Lookup
                 foreach ($notices as $notice)
@@ -332,10 +294,10 @@ class noticeManager
                             if (!$only_non_displayed || empty($user_notice['displayed']))
                             {
                                 // Read user.
-                                $user = \Drupal::service('entity_type.manager')->getStorage('user')->load($user_notice['userid']);
+                                $user = (object) $this->helper->get_user_data_by_user_id($user_notice['userid']);
 
                                 // Verify user object.
-                                if (is_object($user) && !empty($user->id()))
+                                if (is_object($user) && !empty($user->user_id))
                                 {
                                     return $user;
                                 }
@@ -344,6 +306,60 @@ class noticeManager
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * Hash a password.
+     */
+    public function hash_string($password)
+    {
+        // We cannot make a connection without the subdomain.
+        if (!empty($this->config['oa_sso_api_subdomain']) && !empty($this->config['oa_sso_api_key']))
+        {
+            return sha1($this->config['oa_sso_api_key'] . $password . $this->config['oa_sso_api_subdomain']);
+        }
+
+        // Error
+
+        return null;
+    }
+
+    /**
+     * Get notices
+     */
+    public function get_notices()
+    {
+        // Make sure that that the user exists.
+        $sql = "SELECT notices FROM " . $this->table_prefix . "oasl_notices ";
+        $query = $this->db->sql_query_limit($sql, 1);
+        $result = $this->db->sql_fetchrow($query);
+        $this->db->sql_freeresult($query);
+
+        return (is_array($result) && !empty($result['notices'])) ? json_decode($result['notices'], true) : [];
+    }
+
+    /**
+     * Add or update a notice
+     */
+    public function insert_notice(array $notice_data)
+    {
+        $notices = $this->get_notices();
+
+        // non existing -> create it
+        if (!$notices)
+        {
+            // Add new link.
+            $sql_arr = array('notices' => json_encode($notice_data));
+            $sql = "INSERT INTO " . $this->table_prefix . "oasl_notices " . $this->db->sql_build_array('INSERT', $sql_arr);
+            $this->db->sql_query($sql);
+        }
+        else
+        {
+            // Update the counter for the given identity_token.
+            $sql = "UPDATE " . $this->table_prefix . "oasl_notices
+                    SET notices='" . $this->db->sql_escape(json_encode($notice_data)) . "'";
+            $this->db->sql_query($sql);
         }
     }
 }

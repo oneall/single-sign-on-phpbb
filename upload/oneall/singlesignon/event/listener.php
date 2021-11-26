@@ -261,8 +261,8 @@ class listener implements EventSubscriberInterface
                     // Grace period.
                     $period = $this->helper->set_login_wait_cookie($this->config['oa_sso_logout_wait_relogin']);
 
-                    // // Add a notice for the user.
-                    // $this->noticeManager->enable_user_notice($status->user);
+                    // Add a notice for the user.
+                    $this->noticeManager->enable_user_notice($status->user);
 
                     // Add log.
                     $this->helper->add_log('[INIT] @' . $status->action . '] - Blocking automatic SSO re-login for [' . $this->config['oa_sso_logout_wait_relogin'] . '] seconds, until [' . date("d/m/y H:i:s", $period) . ']');

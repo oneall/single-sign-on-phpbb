@@ -41,11 +41,9 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
     // The G_ prefix is not a typo but required
     'G_OA_SINGLE_SIGN_ON_REGISTER' => 'Registered OneAll users',
+    'OA_SINGLE_SIGN_ON_DEFAULT' => 'Default',
 
     'OA_SINGLE_SIGN_ON_TITLE' => 'OneAll Single Sign On',
-    'OA_SINGLE_SIGN_ON_TITLE_HELP' => 'Help, Updates &amp; Documentation',
-
-    'OA_SINGLE_SIGN_ON_DEFAULT' => 'Default',
     'OA_SINGLE_SIGN_ON_VIEW_CREDENTIALS' => '<a href="https://app.oneall.com/applications/" class="button1 external">Create and/or view my API Credentials</a>',
     'OA_SINGLE_SIGN_ON_WIDGET_TITLE' => 'Login with a social network',
 

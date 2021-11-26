@@ -29,9 +29,6 @@ namespace oneall\singlesignon\core;
  */
 class SingleSignOn
 {
-    // Version
-    const USER_AGENT = 'SingleSignOn/1.0.0 phpBB/3.1.x (+http://www.oneall.com/)';
-
     // @var \phpbb\config\config
     protected $config;
 
@@ -919,6 +916,10 @@ class SingleSignOn
     // Get user notice.
     public function get_user_notice()
     {
-        return $this->noticeManager->display_user_notice();
+        // Output for Ajax.
+        $json_response = new \phpbb\json_response();
+
+        $json_response->send(array('val' => $this->noticeManager->display_user_notice()));
+        exit;
     }
 }

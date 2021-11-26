@@ -108,6 +108,14 @@ class m1_initial_schema extends \phpbb\db\migration\migration
                             'oasl_user_id'
                         )
                     )
+                ),
+                $this->table_prefix . 'oasl_notices' => array(
+                    'COLUMNS' => array(
+                        'notices' => array(
+                            'TEXT',
+                            ''
+                        )
+                    )
                 )
             )
         );

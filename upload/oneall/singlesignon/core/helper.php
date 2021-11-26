@@ -270,7 +270,7 @@ class helper
     /**
      * Returns the current url
      */
-    public function get_current_url($add_vars = array(), $remove_vars = array(), $remove_extra_vars = true)
+    public function get_current_url($add_vars = array(), $remove_vars = array(), $remove_extra_vars = true, $full_url = true)
     {
         // Extract Uri
         if (strlen(trim($this->request->server('REQUEST_URI'))) > 0)
@@ -324,7 +324,7 @@ class helper
         $request_port = (!in_array($request_port, array(80, 443, $this->config['server_port'])) ? $request_port : '');
 
         // Build url
-        $current_url = $request_protocol . '://' . $request_host . (!empty($request_port) ? (':' . $request_port) : '') . $request_uri;
+        $current_url = $request_protocol . '://' . $request_host . (!empty($request_port) ? (':' . $request_port) : '') . ($full_uri ? $request_uri : '');
 
         // Remove arguments.
         if (!is_array($remove_vars))
@@ -440,6 +440,33 @@ class helper
         // Not found.
 
         return false;
+    }
+
+    /**
+     * Get the user data for a user_id
+     */
+    public function get_user_data_by_user_id($user_id)
+    {
+        // Read the user_id for this user_id address.
+        $sql = "SELECT * FROM " . USERS_TABLE . "
+                WHERE user_id  = '" . intval($user_id) . "'";
+        $query = $this->db->sql_query_limit($sql, 1);
+        $result = $this->db->sql_fetchrow($query);
+        $this->db->sql_freeresult($query);
+
+        // The user has been found.
+        if (is_array($result))
+        {
+            unset($result['user_password']);
+            unset($result['user_passchg']);
+            unset($result['user_form_salt']);
+
+            return $result;
+        }
+
+        // Not found.
+
+        return array();
     }
 
     /**

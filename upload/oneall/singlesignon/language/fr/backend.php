@@ -44,7 +44,6 @@ $lang = array_merge($lang, array(
 
     'OA_SINGLE_SIGN_ON_DEFAULT' => 'Défaut',
     'OA_SINGLE_SIGN_ON_VIEW_CREDENTIALS' => '<a href="https://app.oneall.com/applications/" class="button1 external">Créer et/ou consulter les données API</a>',
-    'OA_SINGLE_SIGN_ON_WIDGET_TITLE' => 'Connexion avec un réseau social',
 
     'OA_SINGLE_SIGN_ON_ACP' => 'OneAll Single Sign On',
     'OA_SINGLE_SIGN_ON_ACP_SETTINGS' => 'Paramètres',
